@@ -101,25 +101,29 @@ function displayQuestion() {
 }
 
 function displayCorrection() {
+    divResult.innerHTML = " ";
     const solution = questions[questionIndex].solution;
     const choosedProposition = document.querySelector('input[name = "question"]:checked');
     if (choosedProposition) {
         const choice = choosedProposition.value;
         choosedProposition.setAttribute('disabled', false);
         if (choice == solution) {
+            divResult.style.color = 'green';
             divResult.innerHTML = "Bonne réponse";
             score++;
-        } else
+        } else {
+            divResult.style.color = 'red';
             divResult.innerHTML = `Mauvaise réponse, la bonne réponse était ${solution}`;
+        }
         buttonNextQuestion.removeEventListener('click', displayCorrection);
         buttonNextQuestion.addEventListener('click', nextQuestion);
     }
 }
 
 /* Fonction pour tout effacer de la question actuelle
-*  Incrémenter questionIndex et appeler displayQuestion
-*  Efface divResult, supprime les boutons radios, les labels et les listes
-*/
+ *  Incrémenter questionIndex et appeler displayQuestion
+ *  Efface divResult, supprime les boutons radios, les labels et les listes
+ */
 function nextQuestion() {
     divResult.innerHTML = "";
     document.querySelectorAll("input[type=radio]").forEach(radiobutton => radiobutton.parentNode.removeChild(radiobutton));
@@ -133,6 +137,5 @@ function nextQuestion() {
 function displayScore() {
     scoreDisplay = document.getElementById("divScore")
 
-    divScore.innerHTML = + name + ": Ton score est de " + score + "sur" + question.length
+    divScore.innerHTML = +name + ": Ton score est de " + score + "sur" + question.length
 }
-
