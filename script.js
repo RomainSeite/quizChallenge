@@ -107,6 +107,10 @@ function displayCorrection() {
     }
 }
 
+/* Fonction pour tout effacer de la question actuelle
+*  Incrémenter questionIndex et appeler displayQuestion
+*  Efface divResult, supprime les boutons radios, les labels et les listes
+*/
 function nextQuestion() {
     divResult.innerHTML = "";
     document.querySelectorAll("input[type=radio]").forEach(radiobutton => radiobutton.parentNode.removeChild(radiobutton));
