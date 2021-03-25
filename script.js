@@ -29,12 +29,12 @@ let questions = [{
             "101",
             "une erreur"
         ],
-        solution: "NaN (Not a Number)"
+        solution: "101"
     },
     {
         questionTitle: "Q5. Comment mettre un commentaire sur plusieurs lignes ?",
         propositions: ["/* */",
-            "<!-- -->",
+            "---",
             "// //"
         ],
         solution: "/* */"
@@ -71,7 +71,7 @@ let questionIndex = 0;
 let name;
 
 
-buttonStart.addEventListener("click", function () {
+buttonStart.addEventListener("click", function() {
     name = inputName.value;
     welcome.hidden = true;
     questionDiv.hidden = false;
