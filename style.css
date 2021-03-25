@@ -25,11 +25,11 @@ body {
 
 #divResult {
     margin: 1%;
-    padding: 10% 10%;
+    padding: 5% 5%;
     text-align: center;
     background-color: rgba(255, 255, 255, 0.8);
     color: black;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
 }
 
