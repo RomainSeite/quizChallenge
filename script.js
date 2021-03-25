@@ -1,6 +1,6 @@
 /**************************************** */
 let questions = [{
-    titleQuestion: "Q1. A quoi sert l'opérateur === sur JavaScript ?",
+    questionTitle: "Q1. A quoi sert l'opérateur === sur JavaScript ?",
     propositions: ["à comparer le type et la valeur de 2 données",
         "à opérer une affectation après la comparaison",
         "c'est un comparateur logique"
@@ -8,7 +8,7 @@ let questions = [{
     solution: "à comparer le type et la valeur de 2 données"
 },
 {
-    titleQuestion: "Q2. JavaScript ...",
+    questionTitle: "Q2. JavaScript ...",
     propositions: ["doit être compilé avant d'être exécuté",
         "s'exécute sur le client",
         "est un langage dérivé de l'ADA"
@@ -16,7 +16,7 @@ let questions = [{
     solution: "s'exécute sur le client"
 },
 {
-    titleQuestion: "Q3. Une variable locale déclarée dans une fonction peut être utilisée ...",
+    questionTitle: "Q3. Une variable locale déclarée dans une fonction peut être utilisée ...",
     propositions: ["dans toutes les fonctions du document HTML",
         "dans cette fonction uniquement",
         "dans cette fonction et dans le script appelant"
@@ -24,7 +24,7 @@ let questions = [{
     solution: "dans cette fonction uniquement"
 },
 {
-    titleQuestion: 'Q4. parseInt("101 dalmatiens"); renvoie',
+    questionTitle: 'Q4. parseInt("101 dalmatiens"); renvoie',
     propositions: ["NaN (Not a Number)",
         "101",
         "une erreur"
@@ -32,7 +32,7 @@ let questions = [{
     solution: "NaN (Not a Number)"
 },
 {
-    titleQuestion: "Q5. Comment mettre un commentaire sur plusieurs lignes ?",
+    questionTitle: "Q5. Comment mettre un commentaire sur plusieurs lignes ?",
     propositions: ["/* */",
         "<!-- -->",
         "// //"
@@ -40,7 +40,7 @@ let questions = [{
     solution: "/* */"
 },
 {
-    titleQuestion: "Q6. Avec quoi peut-on faire référence à l'objet courant ?",
+    questionTitle: "Q6. Avec quoi peut-on faire référence à l'objet courant ?",
     propositions: ["le point",
         "this",
         "->"
@@ -48,28 +48,25 @@ let questions = [{
     solution: "this"
 },
 {
-    titleQuestion: "Q7. Quelle est la syntaxe correcte ?",
+    questionTitle: "Q7. Quelle est la syntaxe correcte ?",
     propositions: ['window.getElementById("MonId");',
         'document.getElementById("MonId");',
         'getElementById(window.["MonId"]);'
     ],
     solution: 'document.getElementById("MonId");'
 }];
+const questionTitle = document.getElementById("questionTitle");
+const divQuestion = document.getElementById("divQuestion");
+const divResult = document.getElementById('divResult');
+const buttonStart = document.getElementById("buttonStart");
+const buttonNextQuestion = document.getElementById("buttonNextQuestion");
 let score = 0;
 let questionIndex = 0;
-const divQuestion = document.getElementById("divQuestion");
-const titleQuestion = document.getElementById("titleQuestion");
 
-buttonNextQuestion = document.getElementById("buttonNextQuestion");
 buttonNextQuestion.addEventListener('click', displayQuestion);
 
-const buttonStart = document.getElementById("buttonStart");
-const divResult = document.getElementById('divResult');
-
-
 function displayQuestion() {
-    buttonNextQuestion.removeEventListener('click', displayQuestion);
-    titleQuestion.innerHTML = questions[questionIndex].titleQuestion;
+    questionTitle.innerHTML = questions[questionIndex].questionTitle;
     const propositions = questions[questionIndex].propositions;
     propositions.forEach(proposition => {
         radioButtonProposition = document.createElement('input')
@@ -84,37 +81,37 @@ function displayQuestion() {
         listProposition.appendChild(radioButtonProposition)
         listProposition.appendChild(labelProposition)
 
-        
+        buttonNextQuestion.removeEventListener('click', displayQuestion);
         buttonNextQuestion.addEventListener('click', displayCorrection);
     })
-
 }
 
 function displayCorrection() {
-    buttonNextQuestion.removeEventListener('click', displayCorrection);
-    listRadioButtons = document.querySelectorAll("input[type=radio]");
+    const solution = questions[questionIndex].solution;
+    const listRadioButtons = document.querySelectorAll("input[type=radio]");
+
     listRadioButtons.forEach(function(radioButton) {
-    radioButton.setAttribute('disabled', false);
-    if (radioButton.checked) {
-        choice = radioButton.value;
-        if (choice == questions[questionIndex].solution) {
-            divResult.innerHTML = "Bonne réponse";
-            score++;
-        } else
-            divResult.innerHTML = `Mauvaise réponse, la bonne réponse était ${questions[questionIndex].solution}`;
+        radioButton.setAttribute('disabled', false);
+        if (radioButton.checked) {
+            choice = radioButton.value;
+            if (choice == solution) {
+                divResult.innerHTML = "Bonne réponse";
+                score++;
+            } 
+            else
+                divResult.innerHTML = `Mauvaise réponse, la bonne réponse était ${solution}`;
         }
     })
-    
+    buttonNextQuestion.removeEventListener('click', displayCorrection);
     buttonNextQuestion.addEventListener('click', nextQuestion);
 }
 
 function nextQuestion() {
-    buttonNextQuestion.removeEventListener('click', nextQuestion);
+    divResult.innerHTML = "";
     document.querySelectorAll("input[type=radio]").forEach(radiobutton => radiobutton.parentNode.removeChild(radiobutton));
     document.querySelectorAll("label").forEach(label => label.parentNode.removeChild(label));
-    divResult.innerHTML = "";
     document.querySelectorAll("li").forEach(list => list.parentNode.removeChild(list));
     questionIndex++;
-    
+    buttonNextQuestion.removeEventListener('click', nextQuestion);
     displayQuestion();
 }
