@@ -73,7 +73,6 @@ if (buttonNextQuestion)
 function displayQuestion() {
 
     if (questionIndex < questions.length) {
-        //buttonNextQuestion.removeEventListener('click', displayQuestion);
 
         questionTitle.innerHTML = questions[questionIndex].questionTitle;
 
@@ -97,6 +96,7 @@ function displayQuestion() {
         })
     } else {
         window.location.href = "score.html";
+        displayScore();
     }
 }
 
