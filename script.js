@@ -70,27 +70,22 @@ let score = 0;
 let questionIndex = 0;
 let name;
 
-/****************************/
 
-// Seconds left is 15 seconds per question:
+
 var secondsLeft = 70;
-// Holds interval time
+
 var holdInterval = 0;
 
-// Creates new element
-//var ulCreate = document.createElement("ul");
 
-// Triggers timer on button, shows user a display on the screen
 buttonStart.addEventListener("click", function() {
-    // We are checking zero because its originally set to zero
-    if (holdInterval === 0) {
+      if (holdInterval === 0) {
         holdInterval = setInterval(function() {
             secondsLeft--;
-            currentTime.textContent = "Remaining Time: " + secondsLeft;
+            currentTime.textContent = "Temps restant: " + secondsLeft;
 
             if (secondsLeft <= 0) {
                 clearInterval(holdInterval);
-                currentTime.textContent = "Time's up!";
+                currentTime.textContent = "Votre temps est écoulé!";
                 result.hidden = false;
                 questionDiv.hidden = true;
                 divScore.innerHTML = name + ": Ton score est de " + score + " sur " + questions.length;
@@ -100,7 +95,6 @@ buttonStart.addEventListener("click", function() {
     }
     displayQuestion();
 });
-/****************** */
 
 buttonStart.addEventListener("click", function() {
     name = inputName.value;
