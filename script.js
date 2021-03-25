@@ -123,7 +123,7 @@ function displayCorrection() {
             score++;
         } else {
             divResult.style.color = 'red';
-            divResult.innerHTML = `Mauvaise réponse, la bonne réponse était "<font size = 5>${solution}</font>"`;
+            divResult.innerHTML = `Mauvaise réponse, la bonne réponse était <font size = 5>${solution}</font>`;
         }
         buttonNextQuestion.removeEventListener('click', displayCorrection);
         buttonNextQuestion.addEventListener('click', nextQuestion);
