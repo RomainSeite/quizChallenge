@@ -35,7 +35,7 @@ let questions = [{
         questionTitle: "Q5. Comment mettre un commentaire sur plusieurs lignes ?",
         propositions: ["/* */",
             "// //",
-            "<!-- -->",
+            "<-- -->",
         ],
         solution: "/* */"
     },
