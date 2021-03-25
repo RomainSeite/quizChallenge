@@ -1,100 +1,99 @@
 /**************************************** */
-let question = [{
-    title: "Q1. A quoi sert l'opérateur === sur JavaScript ?",
-    proposition: ["à comparer le type et la valeur de 2 données",
+let questions = [{
+    titleQuestion: "Q1. A quoi sert l'opérateur === sur JavaScript ?",
+    propositions: ["à comparer le type et la valeur de 2 données",
         "à opérer une affectation après la comparaison",
         "c'est un comparateur logique"
     ],
     solution: "à comparer le type et la valeur de 2 données"
 },
 {
-    title: "Q2. JavaScript ...",
-    proposition: ["doit être compilé avant d'être exécuté",
+    titleQuestion: "Q2. JavaScript ...",
+    propositions: ["doit être compilé avant d'être exécuté",
         "s'exécute sur le client",
         "est un langage dérivé de l'ADA"
     ],
     solution: "s'exécute sur le client"
 },
 {
-    title: "Q3. Une variable locale déclarée dans une fonction peut être utilisée ...",
-    proposition: ["dans toutes les fonctions du document HTML",
+    titleQuestion: "Q3. Une variable locale déclarée dans une fonction peut être utilisée ...",
+    propositions: ["dans toutes les fonctions du document HTML",
         "dans cette fonction uniquement",
         "dans cette fonction et dans le script appelant"
     ],
     solution: "dans cette fonction uniquement"
 },
 {
-    title: 'Q4. parseInt("101 dalmatiens"); renvoie',
-    proposition: ["NaN (Not a Number)",
+    titleQuestion: 'Q4. parseInt("101 dalmatiens"); renvoie',
+    propositions: ["NaN (Not a Number)",
         "101",
         "une erreur"
     ],
     solution: "NaN (Not a Number)"
 },
 {
-    title: "Q5. Comment mettre un commentaire sur plusieurs lignes ?",
-    proposition: ["/* */",
+    titleQuestion: "Q5. Comment mettre un commentaire sur plusieurs lignes ?",
+    propositions: ["/* */",
         "<!-- -->",
         "// //"
     ],
     solution: "/* */"
 },
 {
-    title: "Q6. Avec quoi peut-on faire référence à l'objet courant ?",
-    proposition: ["le point",
+    titleQuestion: "Q6. Avec quoi peut-on faire référence à l'objet courant ?",
+    propositions: ["le point",
         "this",
         "->"
     ],
     solution: "this"
 },
 {
-    title: "Q7. Quelle est la syntaxe correcte ?",
-    proposition: ['window.getElementById("MonId");',
+    titleQuestion: "Q7. Quelle est la syntaxe correcte ?",
+    propositions: ['window.getElementById("MonId");',
         'document.getElementById("MonId");',
         'getElementById(window.["MonId"]);'
     ],
     solution: 'document.getElementById("MonId");'
-}
-];
+}];
 let score = 0;
 let questionIndex = 0;
 const divQuestion = document.getElementById("divQuestion");
 const titleQuestion = document.getElementById("titleQuestion");
-titleQuestion.innerHTML = "  ";
+//titleQuestion.innerHTML = "  ";
 
-submitBut = document.getElementById("btn");
-submitBut.addEventListener('click', displayQuestion);
+buttonNextQuestion = document.getElementById("buttonNextQuestion");
+buttonNextQuestion.addEventListener('click', displayQuestion);
 
-const startBut = document.getElementById("startbtn");
+const buttonStart = document.getElementById("buttonStart");
 
 
 function displayQuestion() {
-    titleQuestion.innerHTML = question[questionIndex].title;
-    const propositions = question[questionIndex].proposition;
+    titleQuestion.innerHTML = question[questionIndex].titleQuestion;
+    const propositions = question[questionIndex].propositions;
     propositions.forEach(proposition => {
-        inputElt = document.createElement('input')
-        labelElt = document.createElement('label')
-        liElt = document.createElement('li')
-        inputElt.setAttribute('type', 'radio')
-        inputElt.setAttribute('value', proposition)
-        inputElt.setAttribute('name', 'question' + questionIndex)
+        radioButtonProposition = document.createElement('input')
+        labelProposition = document.createElement('label')
+        listProposition = document.createElement('li')
+        radioButtonProposition.setAttribute('type', 'radio')
+        radioButtonProposition.setAttribute('value', proposition)
+        radioButtonProposition.setAttribute('name', 'question' + questionIndex)
 
-        labelElt.innerHTML = proposition;
-        divQuestion.appendChild(liElt)
-        liElt.appendChild(inputElt)
-        liElt.appendChild(labelElt)
+        labelProposition.innerHTML = proposition;
+        divQuestion.appendChild(listProposition)
+        liElt.appendChild(radioButtonProposition)
+        liElt.appendChild(labelProposition)
 
-        inputElt.addEventListener('click', displayCorrection);
-        submitBut.removeEventListener('click', displayQuestion);
+        radioButtonProposition.addEventListener('click', displayCorrection);
+        buttonNextQuestion.removeEventListener('click', displayQuestion);
     })
 
 }
 const divResult = document.getElementById('divResult');
 
 function displayCorrection() {
-radioList = document.querySelectorAll("input[type=radio]");
-radioList.forEach(function(rad) {
-    if (rad.checked) {
+listRadioButtons = document.querySelectorAll("input[type=radio]");
+listRadioButtons.forEach(function(radioButton) {
+    if (radioButton.checked) {
         choice = rad.value;
         console.log(`choice: ${choice}`);
         if (choice == question[questionIndex].solution) {
@@ -105,14 +104,14 @@ radioList.forEach(function(rad) {
             divResult.innerHTML = "Mauvaise réponse";
     }
 })
-submitBut.addEventListener('click', nextQuestion);
+buttonNextQuestion.addEventListener('click', nextQuestion);
 }
 
 function nextQuestion() {
     document.querySelectorAll("input[type=radio]").forEach(radiobutton => radiobutton.parentNode.removeChild(radiobutton));
     document.querySelectorAll("label").forEach(label => label.parentNode.removeChild(label));
 
-    document.querySelectorAll("li").forEach(li => li.parentNode.removeChild(li));
+    document.querySelectorAll("li").forEach(list => list.parentNode.removeChild(list));
     questionIndex++;
     displayQuestion();
 }
