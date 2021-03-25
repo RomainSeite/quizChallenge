@@ -78,7 +78,6 @@ buttonStart.addEventListener("click", function () {
     displayQuestion();
 })
 buttonNextQuestion.addEventListener('click', displayQuestion);
-divScore.innerHTML = name + ": Ton score est de " + score + " sur " + questions.length;
 
 function displayQuestion() {
 
@@ -111,7 +110,6 @@ function displayQuestion() {
     }
 }
 
-
 function displayCorrection() {
     divResult.innerHTML = " ";
     const solution = questions[questionIndex].solution;
@@ -125,7 +123,7 @@ function displayCorrection() {
             score++;
         } else {
             divResult.style.color = 'red';
-            divResult.innerHTML = `Mauvaise réponse, la bonne réponse était "${solution}"`;
+            divResult.innerHTML = `Mauvaise réponse, la bonne réponse était "<font size = 5>${solution}</font>"`;
         }
         buttonNextQuestion.removeEventListener('click', displayCorrection);
         buttonNextQuestion.addEventListener('click', nextQuestion);
