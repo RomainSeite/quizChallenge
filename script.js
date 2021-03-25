@@ -59,15 +59,16 @@ let score = 0;
 let questionIndex = 0;
 const divQuestion = document.getElementById("divQuestion");
 const titleQuestion = document.getElementById("titleQuestion");
-//titleQuestion.innerHTML = "  ";
 
 buttonNextQuestion = document.getElementById("buttonNextQuestion");
 buttonNextQuestion.addEventListener('click', displayQuestion);
 
 const buttonStart = document.getElementById("buttonStart");
+const divResult = document.getElementById('divResult');
 
 
 function displayQuestion() {
+    buttonNextQuestion.removeEventListener('click', displayQuestion);
     titleQuestion.innerHTML = questions[questionIndex].titleQuestion;
     const propositions = questions[questionIndex].propositions;
     propositions.forEach(proposition => {
@@ -83,35 +84,37 @@ function displayQuestion() {
         listProposition.appendChild(radioButtonProposition)
         listProposition.appendChild(labelProposition)
 
-        radioButtonProposition.addEventListener('click', displayCorrection);
-        buttonNextQuestion.removeEventListener('click', displayQuestion);
+        
+        buttonNextQuestion.addEventListener('click', displayCorrection);
     })
 
 }
-const divResult = document.getElementById('divResult');
 
 function displayCorrection() {
-listRadioButtons = document.querySelectorAll("input[type=radio]");
-listRadioButtons.forEach(function(radioButton) {
+    buttonNextQuestion.removeEventListener('click', displayCorrection);
+    listRadioButtons = document.querySelectorAll("input[type=radio]");
+    listRadioButtons.forEach(function(radioButton) {
     if (radioButton.checked) {
         choice = radioButton.value;
         console.log(`choice: ${choice}`);
         if (choice == questions[questionIndex].solution) {
             divResult.innerHTML = "Bonne réponse";
             score++;
-            console.log("ton score est de :" + score);
         } else
             divResult.innerHTML = "Mauvaise réponse";
-    }
-})
-buttonNextQuestion.addEventListener('click', nextQuestion);
+        }
+    })
+    
+    buttonNextQuestion.addEventListener('click', nextQuestion);
 }
 
 function nextQuestion() {
+    buttonNextQuestion.removeEventListener('click', nextQuestion);
     document.querySelectorAll("input[type=radio]").forEach(radiobutton => radiobutton.parentNode.removeChild(radiobutton));
     document.querySelectorAll("label").forEach(label => label.parentNode.removeChild(label));
-
+    divResult.innerHTML = "";
     document.querySelectorAll("li").forEach(list => list.parentNode.removeChild(list));
     questionIndex++;
+    
     displayQuestion();
 }
