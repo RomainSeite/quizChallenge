@@ -61,6 +61,7 @@ const divQuestion = document.getElementById("divQuestion");
 const divResult = document.getElementById('divResult');
 const buttonStart = document.getElementById("buttonStart");
 const buttonNextQuestion = document.getElementById("buttonNextQuestion");
+const scoreDisplay = document.getElementById("divScore")
 const inputName = document.getElementById("name");
 let score = 0;
 let questionIndex = 0;
@@ -69,6 +70,8 @@ if (inputName)
     name = inputName.textContent;
 if (buttonNextQuestion)
     buttonNextQuestion.addEventListener('click', displayQuestion);
+if (scoreDisplay)
+    divScore.innerHTML = name + ": Ton score est de " + score + " sur " + questions.length;
 
 function displayQuestion() {
 
@@ -96,7 +99,6 @@ function displayQuestion() {
         })
     } else {
         window.location.href = "score.html";
-        displayScore();
     }
 }
 
@@ -129,10 +131,3 @@ function nextQuestion() {
     buttonNextQuestion.removeEventListener('click', nextQuestion);
     displayQuestion();
 }
-
-function displayScore() {
-    scoreDisplay = document.getElementById("divScore")
-
-    divScore.innerHTML = + name + ": Ton score est de " + score + "sur" + question.length
-}
-
