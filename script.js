@@ -97,7 +97,6 @@ function displayCorrection() {
     radioButton.setAttribute('disabled', false);
     if (radioButton.checked) {
         choice = radioButton.value;
-        console.log(`choice: ${choice}`);
         if (choice == questions[questionIndex].solution) {
             divResult.innerHTML = "Bonne réponse";
             score++;
