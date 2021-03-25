@@ -132,5 +132,7 @@ function nextQuestion() {
 
 function displayScore() {
     scoreDisplay = document.getElementById("divScore")
-    divScore.innerHTML = "Ton score est de " + score + "sur" + question.length
+
+    divScore.innerHTML = + name + ": Ton score est de " + score + "sur" + question.length
 }
+
