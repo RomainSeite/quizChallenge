@@ -10,13 +10,21 @@
 
 <body>
     <div id="welcome">
-
         <h1 class="topic"> Êtes-vous prêts à commencer le Quiz?</h1>
         <input type="text" id="name" value='name' />
-        <button id="startButton"><a href="quiz.html">Start Quiz</a></button>
-
+        <button id="buttonStart">Start Quiz</button>
     </div>
-    <script src=" script.js "></script>
+    <div id = "questions" class="content" hidden>
+        <h1 id="questionTitle"> </h1>
+        <section id="divQuestion"></section>
+        <button class="but" id="buttonNextQuestion">Next >></button>
+        <section id="divResult"></section>
+    </div>
+    <div id = "result" class="content" hidden>
+        <h1 class="topic"> Result:</h1>
+        <div id="divScore"></div>
+    </div>
+    <script src="script.js"></script>
 </body>
 
 </html>

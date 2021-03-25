@@ -58,11 +58,24 @@ let questions = [{
 ];
 const questionTitle = document.getElementById("questionTitle");
 const divQuestion = document.getElementById("divQuestion");
-const divResult = document.getElementById('divResult');
-const buttonStart = document.getElementById("buttonStart");
+const divResult = document.getElementById('divResult');//
 const buttonNextQuestion = document.getElementById("buttonNextQuestion");
 const scoreDisplay = document.getElementById("divScore")
 const inputName = document.getElementById("name");
+const buttonStart = document.getElementById("buttonStart");
+
+
+    const welcome = document.getElementById("welcome");
+
+    buttonStart.addEventListener("click", function () {
+        welcome.hidden = true;
+        questionDiv.hidden = false;
+    })
+const questionDiv = document.getElementById("questions");
+const result = document.getElementById("result");
+
+
+
 let score = 0;
 let questionIndex = 0;
 let name;
@@ -98,9 +111,12 @@ function displayQuestion() {
 
         })
     } else {
-        window.location.href = "score.html";
-    }
+        result.hidden = false;
+        questionDiv.hidden = true;
+        divScore.innerHTML = name + ": Ton score est de " + score + " sur " + questions.length;
 }
+    }
+
 
 function displayCorrection() {
     const solution = questions[questionIndex].solution;
