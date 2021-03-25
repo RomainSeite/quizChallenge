@@ -69,21 +69,24 @@ const startBut = document.getElementById("startbtn");
 
 
 function displayQuestion() {
-titleQuestion.innerHTML = question[questionIndex].title;
-const propositions = question[questionIndex].proposition;
-propositions.forEach(proposition => {
-    inputElt = document.createElement('input')
-    labelElt = document.createElement('label')
-    inputElt.setAttribute('type', 'radio')
-    inputElt.setAttribute('value', proposition)
-    inputElt.setAttribute('name', 'question' + questionIndex)
+    titleQuestion.innerHTML = question[questionIndex].title;
+    const propositions = question[questionIndex].proposition;
+    propositions.forEach(proposition => {
+        inputElt = document.createElement('input')
+        labelElt = document.createElement('label')
+        liElt = document.createElement('li')
+        inputElt.setAttribute('type', 'radio')
+        inputElt.setAttribute('value', proposition)
+        inputElt.setAttribute('name', 'question' + questionIndex)
 
-    labelElt.innerHTML = proposition;
-    divQuestion.appendChild(inputElt)
-    divQuestion.appendChild(labelElt)
-    inputElt.addEventListener('click', displayCorrection);
-    submitBut.removeEventListener('click', displayQuestion);
-})
+        labelElt.innerHTML = proposition;
+        divQuestion.appendChild(liElt)
+        liElt.appendChild(inputElt)
+        liElt.appendChild(labelElt)
+
+        inputElt.addEventListener('click', displayCorrection);
+        submitBut.removeEventListener('click', displayQuestion);
+    })
 
 }
 const divResult = document.getElementById('divResult');
@@ -106,6 +109,9 @@ submitBut.addEventListener('click', nextQuestion);
 }
 
 function nextQuestion() {
-document.querySelectorAll("input[type=radio]").forEach(radiobutton => radiobutton.parentNode.removeChild(radiobutton));
-document.querySelectorAll("label").forEach(label => label.parentNode.removeChild(label)); questionIndex++; displayQuestion();
+    document.querySelectorAll("input[type=radio]").forEach(radiobutton => radiobutton.parentNode.removeChild(radiobutton));
+    document.querySelectorAll("label").forEach(label => label.parentNode.removeChild(label));
+    document.querySelectorAll("li").forEach(li => li.parentNode.removeChild(li));
+    questionIndex++;
+    displayQuestion();
 }
