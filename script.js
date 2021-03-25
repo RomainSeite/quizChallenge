@@ -125,3 +125,9 @@ function nextQuestion() {
     buttonNextQuestion.removeEventListener('click', nextQuestion);
     displayQuestion();
 }
+
+function displayScore() {
+    scoreDisplay = document.getElementById("divScore")
+    divScore.innerHTML = "Ton score est de score sur question.length"
+}
+    
