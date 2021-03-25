@@ -60,10 +60,14 @@ const divQuestion = document.getElementById("divQuestion");
 const divResult = document.getElementById('divResult');
 const buttonStart = document.getElementById("buttonStart");
 const buttonNextQuestion = document.getElementById("buttonNextQuestion");
+const inputName = document.getElementById("name");
 let score = 0;
 let questionIndex = 0;
-
-buttonNextQuestion.addEventListener('click', displayQuestion);
+let name;
+if (inputName)
+    name = inputName.textContent;
+if (buttonNextQuestion)
+    buttonNextQuestion.addEventListener('click', displayQuestion);
 
 function displayQuestion() {
     questionTitle.innerHTML = questions[questionIndex].questionTitle;
@@ -74,7 +78,7 @@ function displayQuestion() {
         listProposition = document.createElement('li')
         radioButtonProposition.setAttribute('type', 'radio')
         radioButtonProposition.setAttribute('value', proposition)
-        radioButtonProposition.setAttribute('name', 'question' + questionIndex)
+        radioButtonProposition.setAttribute('name', 'question')
 
         labelProposition.innerHTML = proposition;
         divQuestion.appendChild(listProposition)
@@ -88,22 +92,19 @@ function displayQuestion() {
 
 function displayCorrection() {
     const solution = questions[questionIndex].solution;
-    const listRadioButtons = document.querySelectorAll("input[type=radio]");
-
-    listRadioButtons.forEach(function(radioButton) {
-        radioButton.setAttribute('disabled', false);
-        if (radioButton.checked) {
-            choice = radioButton.value;
-            if (choice == solution) {
-                divResult.innerHTML = "Bonne réponse";
-                score++;
-            } 
-            else
-                divResult.innerHTML = `Mauvaise réponse, la bonne réponse était ${solution}`;
-        }
-    })
-    buttonNextQuestion.removeEventListener('click', displayCorrection);
-    buttonNextQuestion.addEventListener('click', nextQuestion);
+    const choosedProposition = document.querySelector('input[name = "question"]:checked');
+    if (choosedProposition) {
+        const choice = choosedProposition.value;
+        choosedProposition.setAttribute('disabled', false);
+        if (choice == solution) {
+            divResult.innerHTML = "Bonne réponse";
+            score++;
+        } 
+        else
+            divResult.innerHTML = `Mauvaise réponse, la bonne réponse était ${solution}`;
+        buttonNextQuestion.removeEventListener('click', displayCorrection);
+        buttonNextQuestion.addEventListener('click', nextQuestion);
+    }
 }
 
 function nextQuestion() {
