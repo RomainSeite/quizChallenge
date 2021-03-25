@@ -23,6 +23,15 @@ body {
     color: #be3a87;
 }
 
+#divResult {
+    margin: auto;
+    margin-top: 5%;
+    padding: 10% 10%;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+}
+
 #welcome {
     margin: auto;
     margin-top: 2%;
@@ -31,4 +40,14 @@ body {
     padding: 0% 2%;
     font-family: "Corben", serif;
     color: white;
+}
+
+input {
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    border: 3px solid black;
+    margin-right: 5px;
+    position: relative;
+    top: 4px;
 }
