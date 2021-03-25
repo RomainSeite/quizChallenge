@@ -51,3 +51,7 @@ input {
     position: relative;
     top: 4px;
 }
+
+li {
+    list-style:none;
+}
