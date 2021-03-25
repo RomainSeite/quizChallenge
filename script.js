@@ -68,8 +68,10 @@ const divResult = document.getElementById('divResult');
 
 
 function displayQuestion() {
+	 if (questionIndex < questions.length) {
     buttonNextQuestion.removeEventListener('click', displayQuestion);
-    titleQuestion.innerHTML = questions[questionIndex].titleQuestion;
+
+	titleQuestion.innerHTML = questions[questionIndex].titleQuestion;
     const propositions = questions[questionIndex].propositions;
     propositions.forEach(proposition => {
         radioButtonProposition = document.createElement('input')
@@ -86,8 +88,11 @@ function displayQuestion() {
 
         
         buttonNextQuestion.addEventListener('click', displayCorrection);
-    })
-
+    })}
+		 else
+		 {
+ window.location.href = "score.html";
+		 }
 }
 
 function displayCorrection() {
