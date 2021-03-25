@@ -94,6 +94,7 @@ function displayCorrection() {
     buttonNextQuestion.removeEventListener('click', displayCorrection);
     listRadioButtons = document.querySelectorAll("input[type=radio]");
     listRadioButtons.forEach(function(radioButton) {
+    radioButton.setAttribute('disabled', false);
     if (radioButton.checked) {
         choice = radioButton.value;
         console.log(`choice: ${choice}`);
@@ -101,7 +102,7 @@ function displayCorrection() {
             divResult.innerHTML = "Bonne réponse";
             score++;
         } else
-            divResult.innerHTML = "Mauvaise réponse";
+            divResult.innerHTML = `Mauvaise réponse, la bonne réponse était ${questions[questionIndex].solution}`;
         }
     })
     
