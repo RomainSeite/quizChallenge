@@ -68,8 +68,8 @@ const buttonStart = document.getElementById("buttonStart");
 
 
 function displayQuestion() {
-    titleQuestion.innerHTML = question[questionIndex].titleQuestion;
-    const propositions = question[questionIndex].propositions;
+    titleQuestion.innerHTML = questions[questionIndex].titleQuestion;
+    const propositions = questions[questionIndex].propositions;
     propositions.forEach(proposition => {
         radioButtonProposition = document.createElement('input')
         labelProposition = document.createElement('label')
@@ -96,7 +96,7 @@ listRadioButtons.forEach(function(radioButton) {
     if (radioButton.checked) {
         choice = rad.value;
         console.log(`choice: ${choice}`);
-        if (choice == question[questionIndex].solution) {
+        if (choice == questions[questionIndex].solution) {
             divResult.innerHTML = "Bonne réponse";
             score++;
             console.log("ton score est de :" + score);
