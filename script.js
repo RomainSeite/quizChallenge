@@ -29,7 +29,7 @@ let questions = [{
             "101",
             "une erreur"
         ],
-        solution: "NaN (Not a Number)"
+        solution: "101"
     },
     {
         questionTitle: "Q5. Comment mettre un commentaire sur plusieurs lignes ?",
