@@ -125,7 +125,7 @@ function displayCorrection() {
             score++;
         } else {
             divResult.style.color = 'red';
-            divResult.innerHTML = `Mauvaise réponse, la bonne réponse était ${solution}`;
+            divResult.innerHTML = `Mauvaise réponse, la bonne réponse était "${solution}"`;
         }
         buttonNextQuestion.removeEventListener('click', displayCorrection);
         buttonNextQuestion.addEventListener('click', nextQuestion);
