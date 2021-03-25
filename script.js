@@ -106,6 +106,8 @@ submitBut.addEventListener('click', nextQuestion);
 }
 
 function nextQuestion() {
-document.querySelectorAll("input[type=radio]").forEach(radiobutton => radiobutton.parentNode.removeChild(radiobutton));
-document.querySelectorAll("label").forEach(label => label.parentNode.removeChild(label)); questionIndex++; displayQuestion();
+    document.querySelectorAll("input[type=radio]").forEach(radiobutton => radiobutton.parentNode.removeChild(radiobutton));
+    document.querySelectorAll("label").forEach(label => label.parentNode.removeChild(label));
+    questionIndex++;
+    displayQuestion();
 }
