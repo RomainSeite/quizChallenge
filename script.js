@@ -58,33 +58,26 @@ let questions = [{
 ];
 const questionTitle = document.getElementById("questionTitle");
 const divQuestion = document.getElementById("divQuestion");
-const divResult = document.getElementById('divResult');//
+const divResult = document.getElementById('divResult');
 const buttonNextQuestion = document.getElementById("buttonNextQuestion");
 const scoreDisplay = document.getElementById("divScore")
 const inputName = document.getElementById("name");
 const buttonStart = document.getElementById("buttonStart");
-
-
-    const welcome = document.getElementById("welcome");
-
-    buttonStart.addEventListener("click", function () {
-        name = inputName.value;
-        welcome.hidden = true;
-        questionDiv.hidden = false;
-        displayQuestion();
-    })
+const welcome = document.getElementById("welcome");
 const questionDiv = document.getElementById("questions");
 const result = document.getElementById("result");
-
-
-
 let score = 0;
 let questionIndex = 0;
 let name;
-if (buttonNextQuestion)
-    buttonNextQuestion.addEventListener('click', displayQuestion);
-if (scoreDisplay)
-    divScore.innerHTML = name + ": Ton score est de " + score + " sur " + questions.length;
+
+
+buttonStart.addEventListener("click", function () {
+    name = inputName.value;
+    welcome.hidden = true;
+    questionDiv.hidden = false;
+    displayQuestion();
+})
+buttonNextQuestion.addEventListener('click', displayQuestion);
 
 function displayQuestion() {
 
@@ -114,9 +107,8 @@ function displayQuestion() {
         result.hidden = false;
         questionDiv.hidden = true;
         divScore.innerHTML = name + ": Ton score est de " + score + " sur " + questions.length;
-}
     }
-
+}
 
 function displayCorrection() {
     divResult.innerHTML = " ";
@@ -131,7 +123,7 @@ function displayCorrection() {
             score++;
         } else {
             divResult.style.color = 'red';
-            divResult.innerHTML = `Mauvaise réponse, la bonne réponse était ${solution}`;
+            divResult.innerHTML = `Mauvaise réponse, la bonne réponse était <font size = 5>${solution}</font>`;
         }
         buttonNextQuestion.removeEventListener('click', displayCorrection);
         buttonNextQuestion.addEventListener('click', nextQuestion);
