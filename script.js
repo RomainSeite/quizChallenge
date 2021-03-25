@@ -71,6 +71,7 @@ const buttonStart = document.getElementById("buttonStart");
         name = inputName.value;
         welcome.hidden = true;
         questionDiv.hidden = false;
+        displayQuestion();
     })
 const questionDiv = document.getElementById("questions");
 const result = document.getElementById("result");
