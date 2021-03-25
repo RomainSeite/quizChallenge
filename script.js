@@ -68,6 +68,7 @@ const buttonStart = document.getElementById("buttonStart");
     const welcome = document.getElementById("welcome");
 
     buttonStart.addEventListener("click", function () {
+        name = inputName.value;
         welcome.hidden = true;
         questionDiv.hidden = false;
     })
@@ -79,8 +80,6 @@ const result = document.getElementById("result");
 let score = 0;
 let questionIndex = 0;
 let name;
-if (inputName)
-    name = inputName.textContent;
 if (buttonNextQuestion)
     buttonNextQuestion.addEventListener('click', displayQuestion);
 if (scoreDisplay)
