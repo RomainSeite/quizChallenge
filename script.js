@@ -80,8 +80,8 @@ function displayQuestion() {
 
         labelProposition.innerHTML = proposition;
         divQuestion.appendChild(listProposition)
-        liElt.appendChild(radioButtonProposition)
-        liElt.appendChild(labelProposition)
+        listProposition.appendChild(radioButtonProposition)
+        listProposition.appendChild(labelProposition)
 
         radioButtonProposition.addEventListener('click', displayCorrection);
         buttonNextQuestion.removeEventListener('click', displayQuestion);
@@ -94,7 +94,7 @@ function displayCorrection() {
 listRadioButtons = document.querySelectorAll("input[type=radio]");
 listRadioButtons.forEach(function(radioButton) {
     if (radioButton.checked) {
-        choice = rad.value;
+        choice = radioButton.value;
         console.log(`choice: ${choice}`);
         if (choice == questions[questionIndex].solution) {
             divResult.innerHTML = "Bonne réponse";
